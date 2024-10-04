@@ -30,7 +30,7 @@ jobs:
           gh release create "$tag" \
             --repo="${{github.repository}}" \
             --title="$tag" \
-            -n "see https://github.com/james58899/hath-rust/releases/tag/$tag" || echo "It's already exists.
+            -n "see https://github.com/james58899/hath-rust/releases/tag/$tag" || echo "It's already exists."
           gh release upload "$tag" "./hath-gnu.deb" \
             --clobber \
             --repo="${{github.repository}}"
