@@ -1,0 +1,15 @@
+[Unit]
+Description=Hentai at Home
+After=network.target network-online.target nss-lookup.target
+
+[Service]
+ExecStart=/usr/bin/hath --disable-logging --cache-dir /var/lib/hath/cache --data-dir /var/lib/hath/data --download-dir /var/lib/hath/download --log-dir /var/lib/hath/log --temp-dir /var/lib/hath/tmp
+Restart=always
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+User=hath
+Group=nogroup
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target

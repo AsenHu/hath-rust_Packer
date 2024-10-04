@@ -1,0 +1,10 @@
+#!/bin/bash
+
+rm -rvf /var/lib/hath/data /var/lib/hath/log /var/lib/hath/tmp /usr/bin/hath /usr/lib/systemd/system/hath.service
+
+if getent passwd hath > /dev/null
+then
+    userdel -r hath
+fi
+
+echo "The cache and downloaded images in /var/lib/hath are not deleted. You can delete them manually."

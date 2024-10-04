@@ -1,0 +1,4 @@
+Package: hath
+Architecture: amd64
+Maintainer: Asen Hu <hath@asen.page>
+Description: The unofficial Hentai@Home client written in Rust

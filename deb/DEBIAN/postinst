@@ -1,0 +1,3 @@
+#!/bin/bash
+
+useradd --system --create-home --home-dir /var/lib/hath --shell /usr/sbin/nologin hath
