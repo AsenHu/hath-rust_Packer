@@ -26,7 +26,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag="$(cat ./tag_name.txt)"
+          tag=$(< ./tag_name.txt) || exit 0
           gh release create "$tag" \
             --repo="${{github.repository}}" \
             --title="$tag" \
