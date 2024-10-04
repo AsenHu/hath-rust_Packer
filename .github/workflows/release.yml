@@ -1,0 +1,39 @@
+name: release
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: '8 50 * * 6'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: install module
+        run: pip install -r requirements.txt
+      - name: build
+        run: python ./packer.py
+      - name: upload
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="$(cat ./tag_name.txt)"
+          gh release create "$tag" \
+            --repo="${{github.repository}}" \
+            --title="$tag" \
+            -n "see https://github.com/james58899/hath-rust/releases/tag/$tag" || echo "It's already exists.
+          gh release upload "$tag" "./hath-gnu.deb" \
+            --clobber \
+            --repo="${{github.repository}}"
+          gh release upload "$tag" "./hath-musl.deb" \
+            --clobber \
+            --repo="${{github.repository}}"

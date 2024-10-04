@@ -63,5 +63,9 @@ def main():
     shutil.move('hath-musl', 'deb/usr/bin/hath')
     os.system('dpkg-deb -Zxz -Sextreme -z9 -vD -b ./deb hath-musl.deb')
 
+    # tag name for 工作流
+    with open('tag_name.txt', 'w') as file:
+        file.write(hath_rust_latest)
+
 if __name__ == "__main__":
     main()
