@@ -5,7 +5,7 @@ permissions:
 
 on:
   schedule:
-    - cron: '8 50 * * 6'
+    - cron: '50 8 * * 6'
   workflow_dispatch:
 
 jobs:
